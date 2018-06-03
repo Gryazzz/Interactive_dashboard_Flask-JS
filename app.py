@@ -44,5 +44,12 @@ def get_otu():
 
     return jsonify(bacteries)
 
+@app.route('/metadata/<sample>')
+def metaData_sample(sample):
+    from functions import metasample
+    metaData = metasample(engine, sample)
+
+    return jsonify(metaData)
+
 if __name__ == "__main__":
     app.run()
