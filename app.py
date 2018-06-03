@@ -13,10 +13,12 @@ db = SQLAlchemy(app)
 db.metadata.bind = db.engine
 db.metadata.reflect(db.engine)
 
-base = automap_base(metadata=db.metadata)
-base.prepare()
+Base = automap_base(metadata=db.metadata)
+Base.prepare()
 
-#Pet = base.classes.pets
+Samples_metadata = Base.classes.samples_metadata
+Samples = Base.classes.samples
+Otu = Base.classes.otu
 
 @app.route("/")
 def home():
@@ -30,7 +32,17 @@ def get_names():
 
     return jsonify(names)
 
+@app.route('/otu')
+def get_otu():
 
+    bact_tuples = db.session.query(Otu.lowest_taxonomic_unit_found).all()
+    bacteries = []
+    for b_tuple in bact_tuples:
+        for bact in b_tuple:
+            bacteries.append(bact)
+    #bacteries = [bact for b_tuple in bact_tuples for bact in b_tuple]
+
+    return jsonify(bacteries)
 
 if __name__ == "__main__":
     app.run()
