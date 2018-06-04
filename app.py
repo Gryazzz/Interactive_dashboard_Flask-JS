@@ -63,5 +63,15 @@ def washing_frequency(sample):
 
     return jsonify(frequency)
 
+@app.route('/samples/<sample>')
+def otu_value(sample):
+    fetch = engine.execute(f'select "{sample}", otu_id from samples where "{sample}" > 0 order by "{sample}" desc' ).fetchall()
+    val, ids = zip(*fetch)
+    values_otu = [dict(otu_ids=list(ids)), dict(sample_values=list(val))]
+
+    return jsonify(values_otu)
+
+
+
 if __name__ == "__main__":
     app.run()
