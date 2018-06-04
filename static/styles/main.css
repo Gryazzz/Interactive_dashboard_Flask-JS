@@ -1,0 +1,78 @@
+
+
+.header {
+    grid-area: header;
+    background: beige;
+}
+
+.sidebar-left {
+    grid-area: sidebar-left;
+    background: rgb(252, 182, 237);
+}
+
+.sidebar-right {
+    grid-area: sidebar-right;
+    background: rgb(252, 182, 237);
+}
+
+.navigation {
+    grid-area: navigation;
+    background: rgb(212, 245, 209);
+}
+
+.pie {
+    grid-area: pie;
+    background: rgb(247, 202, 185);
+}
+
+.metadata {
+    grid-area: metadata;
+    background: rgb(205, 233, 247);
+}
+
+.bubble {
+    grid-area: bubble;
+    background: rgb(247, 252, 203);
+}
+
+.gauge {
+    grid-area: gauge;
+    background: rgb(247, 129, 139);
+}
+
+.wrapper {
+    display: grid;
+    
+    grid-template-columns: 1fr 3fr 4fr 1fr;
+    grid-template-rows: auto;
+
+    grid-template-areas:
+        'header header header header'
+        'sidebar-left navigation pie sidebar-right'
+        'sidebar-left metadata gauge sidebar-right'
+        'sidebar-left bubble bubble sidebar-right';
+
+    grid-gap: 7px;
+
+}
+
+@media all and (max-width: 880px) {
+    .wrapper {
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "header header"
+        "navigation pie"
+        "metadata bubble"
+        "gauge gauge";
+        grid-gap: 5px;
+    }
+    .sidebar-left, .sidebar-right {
+        display: none;
+    }
+}
+
+.container-border {
+    margin: 15px;
+    background: rgb(219, 219, 214);
+}
