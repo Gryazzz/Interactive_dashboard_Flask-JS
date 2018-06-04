@@ -18,18 +18,21 @@ def find_col_names(eng, table_name):
 
 #Sample metadata
 def metasample(eng, sample):
-    from sqlalchemy import inspect
-    inspector = inspect(eng)
+    if sample in find_col_names(eng, 'samples'):
+        from sqlalchemy import inspect
+        inspector = inspect(eng)
 
-    form_sample = int(sample[3:])
+        form_sample = int(sample[3:])
     
-    keys = ['AGE', 'BBTYPE', 'ETHNICITY', 'GENDER', 'LOCATION', 'SAMPLEID']
-    values = [f for s in eng.execute(f'SELECT * FROM samples_metadata where SAMPLEID = {form_sample}').\
+        keys = ['AGE', 'BBTYPE', 'ETHNICITY', 'GENDER', 'LOCATION', 'SAMPLEID']
+        values = [f for s in eng.execute(f'SELECT * FROM samples_metadata where SAMPLEID = {form_sample}').\
           fetchall() for f in s]
     
-    sample_dict = {}
-    cols = inspector.get_columns('samples_metadata')
-    for x in range(len(cols)):
-        if cols[x]['name'] in keys:
-            sample_dict[cols[x]['name']] = values[x]
-    return sample_dict
+        sample_dict = {}
+        cols = inspector.get_columns('samples_metadata')
+        for x in range(len(cols)):
+            if cols[x]['name'] in keys:
+                sample_dict[cols[x]['name']] = values[x]
+        return sample_dict
+    else:
+        return f'There is no sample named {sample} in our dataset'

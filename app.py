@@ -24,6 +24,7 @@ Otu = Base.classes.otu
 def home():
     return "Welcome!"
 
+
 @app.route('/names')
 def get_names():
     from functions import find_col_names
@@ -31,6 +32,7 @@ def get_names():
     del names[:1]
 
     return jsonify(names)
+
 
 @app.route('/otu')
 def get_otu():
@@ -44,12 +46,22 @@ def get_otu():
 
     return jsonify(bacteries)
 
+
 @app.route('/metadata/<sample>')
 def metaData_sample(sample):
     from functions import metasample
     metaData = metasample(engine, sample)
 
     return jsonify(metaData)
+
+
+@app.route('/wfreq/<sample>')
+def washing_frequency(sample):
+    form_sample = int(sample[3:])
+    frequency = int(db.session.query(Samples_metadata.WFREQ).\
+    filter(Samples_metadata.SAMPLEID == form_sample).all()[0][0])
+
+    return jsonify(frequency)
 
 if __name__ == "__main__":
     app.run()
