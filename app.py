@@ -57,20 +57,32 @@ def metaData_sample(sample):
 
 @app.route('/wfreq/<sample>')
 def washing_frequency(sample):
-    form_sample = int(sample[3:])
-    frequency = int(db.session.query(Samples_metadata.WFREQ).\
-    filter(Samples_metadata.SAMPLEID == form_sample).all()[0][0])
 
-    return jsonify(frequency)
+    from functions import find_col_names
+
+    if sample in find_col_names(engine, 'samples'):
+        form_sample = int(sample[3:])
+        frequency = int(db.session.query(Samples_metadata.WFREQ).\
+        filter(Samples_metadata.SAMPLEID == form_sample).all()[0][0])
+
+        return jsonify(frequency)
+
+    else:
+        return f'There is no sample named {sample} in our dataset'
 
 @app.route('/samples/<sample>')
 def otu_value(sample):
-    fetch = engine.execute(f'select "{sample}", otu_id from samples where "{sample}" > 0 order by "{sample}" desc' ).fetchall()
-    val, ids = zip(*fetch)
-    values_otu = [dict(otu_ids=list(ids)), dict(sample_values=list(val))]
+    from functions import find_col_names
 
-    return jsonify(values_otu)
+    if sample in find_col_names(engine, 'samples'):
+        fetch = engine.execute(f'select "{sample}", otu_id from samples where "{sample}" > 0 order by "{sample}" desc' ).fetchall()
+        val, ids = zip(*fetch)
+        values_otu = [dict(otu_ids=list(ids)), dict(sample_values=list(val))]
 
+        return jsonify(values_otu)
+    
+    else:
+        return f'There is no sample named {sample} in our dataset'
 
 
 if __name__ == "__main__":
