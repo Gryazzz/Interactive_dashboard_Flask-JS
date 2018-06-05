@@ -16,19 +16,19 @@
             <h2>Biodiversity Dashboard</h2>
                
         </div>
-        <div class="sidebar-left">
-            
-                <p>Left</p>
-            
-        </div>
-        <div class="sidebar-right">
-            
-                <p>Right</p>
-            
-        </div>
+        <div class="sidebar-left"></div>
+        <div class="sidebar-right"></div>
         <div class="navigation">
             <div class="container-border">
-                <p>Nav</p>
+                <div class="choose">
+                    <p>Select a sample:</p>
+                    <select id="names" onchange="getData(this.value)">
+                        <option value="name1">United States</option>
+                        <option value="name2">UK</option>
+                        <option value="name3">Canada</option>
+                    </select>
+                    
+                </div>
             </div>
         </div>
         <div class="pie">
@@ -56,6 +56,7 @@
 
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

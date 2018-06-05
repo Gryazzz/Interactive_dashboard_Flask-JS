@@ -22,6 +22,7 @@ body {
 
 .header h1 {
     font-size: 40px;
+    
 }
 
 /* SIDEBARS------------------------------------------------- */
@@ -38,9 +39,22 @@ body {
     background-size: cover;
 }
 
+/* NAVIGATION----------------------------------------- */
+
 .navigation {
     grid-area: navigation;
     background: rgb(212, 245, 209);
+}
+
+.choose {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#names {
+    margin-bottom: 15px;
 }
 
 .pie {
@@ -72,8 +86,9 @@ body {
     grid-template-areas:
         'header header header header'
         'sidebar-left navigation pie sidebar-right'
-        'sidebar-left metadata gauge sidebar-right'
-        'sidebar-left bubble bubble sidebar-right';
+        'sidebar-left metadata pie sidebar-right'
+        'sidebar-left bubble bubble sidebar-right'
+        'sidebar-left gauge gauge sidebar-right';
 
     grid-gap: 7px;
 
@@ -96,6 +111,9 @@ body {
 }
 
 .container-border {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 15px;
     background: rgb(219, 219, 214);
 }
