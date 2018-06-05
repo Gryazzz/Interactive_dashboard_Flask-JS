@@ -75,11 +75,14 @@ select {
 .pie {
     grid-area: pie;
     background: rgb(247, 202, 185);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 #pie-container {
-    display: flex;
-    flex: 1;
+    /* display: flex; */
+    /* flex: 1; */
 }
 
 .metadata {
