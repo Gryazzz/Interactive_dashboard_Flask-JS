@@ -6,7 +6,7 @@
     <title>Bacteriofags</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='styles/main.css') }}"/>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='bromelia.ico') }}">
 </head>
 <body>
     <div class="wrapper">
@@ -22,12 +22,7 @@
             <div class="container-border">
                 <div class="choose">
                     <p>Select a sample:</p>
-                    <select id="names" onchange="getData(this.value)">
-                        <option value="name1">United States</option>
-                        <option value="name2">UK</option>
-                        <option value="name3">Canada</option>
-                    </select>
-                    
+                    <select id="names" onchange="getData(this.value)"></select>
                 </div>
             </div>
         </div>

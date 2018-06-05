@@ -50,7 +50,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+}
+
+select {
+    /* margin: 2px; */
+    padding: 4px;
+    padding-right: 4px;
+    width: 75px;
+    font-size: 13px;
+    border: 2px solid rgb(177, 175, 175);
+    background: url('../images/favicon.ico') 90% / 20% no-repeat rgb(248, 246, 246);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 #names {
@@ -80,7 +93,7 @@ body {
 .wrapper {
     display: grid;
     
-    grid-template-columns: 1fr 3fr 4fr 1fr;
+    grid-template-columns: 1fr 2fr 4fr 1fr;
     grid-template-rows: 200px auto;
 
     grid-template-areas:
@@ -116,4 +129,5 @@ body {
     justify-content: center;
     margin: 15px;
     background: rgb(219, 219, 214);
+    border-radius: 5px;
 }
