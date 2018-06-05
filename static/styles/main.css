@@ -57,7 +57,7 @@ select {
     /* margin: 2px; */
     padding: 4px;
     padding-right: 4px;
-    width: 75px;
+    width: 85px;
     font-size: 13px;
     border: 2px solid rgb(177, 175, 175);
     background: url('../images/favicon.ico') 90% / 20% no-repeat rgb(248, 246, 246);
@@ -70,9 +70,16 @@ select {
     margin-bottom: 15px;
 }
 
+/* PIE--------------------------------------------- */
+
 .pie {
     grid-area: pie;
     background: rgb(247, 202, 185);
+}
+
+#pie-container {
+    display: flex;
+    flex: 1;
 }
 
 .metadata {
@@ -94,14 +101,14 @@ select {
     display: grid;
     
     grid-template-columns: 1fr 2fr 4fr 1fr;
-    grid-template-rows: 200px auto;
+    grid-template-rows: 200px 30vh auto;
 
     grid-template-areas:
         'header header header header'
         'sidebar-left navigation pie sidebar-right'
         'sidebar-left metadata pie sidebar-right'
         'sidebar-left bubble bubble sidebar-right'
-        'sidebar-left gauge gauge sidebar-right';
+        'sidebar-left . gauge sidebar-right';
 
     grid-gap: 7px;
 
@@ -114,8 +121,8 @@ select {
         grid-template-areas:
         "header header"
         "navigation pie"
-        "metadata bubble"
-        "gauge gauge";
+        "metadata gauge"
+        "bubble bubble";
         grid-gap: 5px;
     }
     .sidebar-left, .sidebar-right {
