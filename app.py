@@ -7,6 +7,11 @@ engine = create_engine("sqlite:///Data/belly_button_biodiversity.sqlite")
 
 app = Flask(__name__)
 
+def before_request():
+    app.jinja_env.cache = {}
+
+app.before_request(before_request)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Data/belly_button_biodiversity.sqlite"
 db = SQLAlchemy(app)
 
@@ -20,9 +25,11 @@ Samples_metadata = Base.classes.samples_metadata
 Samples = Base.classes.samples
 Otu = Base.classes.otu
 
+
+
 @app.route("/")
 def home():
-    return "Welcome!"
+    return render_template("index.html")
 
 
 @app.route('/names')
@@ -77,7 +84,7 @@ def otu_value(sample):
     if sample in find_col_names(engine, 'samples'):
         fetch = engine.execute(f'select "{sample}", otu_id from samples where "{sample}" > 0 order by "{sample}" desc' ).fetchall()
         val, ids = zip(*fetch)
-        values_otu = [dict(otu_ids=list(ids)), dict(sample_values=list(val))]
+        values_otu = [dict(otu_ids=list(ids), sample_values=list(val))]
 
         return jsonify(values_otu)
     
@@ -86,4 +93,6 @@ def otu_value(sample):
 
 
 if __name__ == "__main__":
-    app.run()
+    # app.jinja_env.auto_reload = True
+    # app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.run(debug=True)
