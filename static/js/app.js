@@ -1,7 +1,5 @@
 
-
 var otu = new Array();
-
 
 // add options to select #names
 Plotly.d3.json('/names', function(error, response) {
@@ -18,15 +16,17 @@ Plotly.d3.json("/otu", function(error, response) {
     otu = response;
 });
 
+// var sample_otu = new Object();
+
 function optionChanged(sample) {
 
-    var sample_otu = new Object();
+    // var sample_otu = new Object();
     var metadata = new Array();
     var wfrequency = '';
     
     Plotly.d3.json(("/samples/" + sample), function(error, response) {
         
-        sample_otu = response;
+        var sample_otu = response;
         // console.log(sample_otu);
         // console.log(otu);
         pieChart(sample_otu);
@@ -42,32 +42,48 @@ function optionChanged(sample) {
 
 };
 
+// var hover = new Array();
 
-function pieChart(dict) {
+function pieChart(dict ) {
 
     var pie_plot = Plotly.d3.select('#pie-container').node();
 
+    var labels = Object.values(dict[0])[0].slice(0,10);
+    var values = Object.values(dict[0])[1].slice(0,10);
+    
+    //extract otu's for hover
+    var hover = otu.filter((ot, index) => {
+        if (labels.includes(index+1)) {
+            return ot
+        };
+    }); 
+    // console.log(hover);
+
     var data = [{
-        values: Object.values(dict[1])[0].slice(0,9),
-        labels: Object.values(dict[0])[0].slice(0,9),
+        values: values,
+        labels: labels,
+        names: hover,
         type: 'pie'
     }];
+    // console.log(values);
 
     var layout = {
         // 'title': 'Pirojok',
         height: Plotly.d3.select('.pie').node().offsetHeight,
         width: Plotly.d3.select('.pie').node().offsetWidth,
         autosize: true,
+        hoverinfo: 'label+value+name',
         margin: {
-            t: 20, //top margin
-            l: 20, //left margin
-            r: 20, //right margin
-            b: 20 //bottom margin
-            }
+            t: 20,
+            l: 20,
+            r: 20,
+            b: 20
+        }
     };
 
     Plotly.newPlot(pie_plot, data, layout);
 
+    window.addEventListener('resize', function() { Plotly.Plots.resize(pie_plot); });
     // window.onresize = function() {
     //     Plotly.Plots.resize(pie_plot);
     //     var window_width = window.innerWidth;
