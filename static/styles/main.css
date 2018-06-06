@@ -45,6 +45,9 @@ body {
 .navigation {
     grid-area: navigation;
     background: rgb(212, 245, 209);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .choose {
@@ -81,6 +84,9 @@ select {
 .metadata {
     grid-area: metadata;
     background: rgb(205, 233, 247);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bubble {
@@ -97,7 +103,7 @@ select {
     display: grid;
     
     grid-template-columns: 0.8fr 2fr 4fr 0.8fr;
-    grid-template-rows: 200px 150px 200px 300px 250px;
+    grid-template-rows: 200px 150px 200px 300px auto;
 
     grid-template-areas:
         'header header header header'
@@ -131,7 +137,9 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 15px;
+    padding: 7px;
     background: rgb(255, 255, 255);
     border-radius: 7px;
+    border: 1px, solid, rgb(75, 66, 66);
+    
 }

@@ -155,8 +155,8 @@ function gauge(wfrequency) {
 
     var gauge_plot = Plotly.d3.select('#gauge-container').node();
 
-    var degrees = 180 - wfrequency,
-        radius = .5;
+    var degrees = 180 - wfrequency*18,
+        radius = .4;
     var radians = degrees * Math.PI / 180;
     var x = radius * Math.cos(radians);
     var y = radius * Math.sin(radians);
@@ -168,51 +168,69 @@ function gauge(wfrequency) {
         pathEnd = ' Z';
     var path = mainPath.concat(pathX,space,pathY,pathEnd);
 
-    var data = [{ type: 'scatter',
-        x: [0], y:[0],
-        marker: {size: 28, color:'850000'},
+    var data = [
+
+        {type: 'scatter',
+        x:[0],
+        y:[0],
+        marker: {size: 15, color:'rgb(0, 22, 229)'},
         showlegend: false,
-        name: 'washing frequency',
+        name: 'times per week',
         text: wfrequency,
         hoverinfo: 'text+name'},
-        { values: [50/6, 50/6, 50/6, 50/6, 50/6, 50/6, 50],
+
+        {type: 'pie',
+        showlegend: false,
+        hole: 0.4,
         rotation: 90,
-        text: ['TOO FAST!', 'Pretty Fast', 'Fast', 'Average',
-                'Slow', 'Super Slow', ''],
+        values: [100/9, 100/9, 100/9, 100/9, 100/9, 100/9, 100/9, 100/9, 100/9, 100],
+        text: ["never", "almost never", "occasionally", "sometimes", "more than others", "almost every day", "every day", "almost ideally", "clean winner", ""],
+        direction: "clockwise",
         textinfo: 'text',
-        textposition:'inside',
-        marker: {colors:['rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
-                         'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
-                         'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
-                         'rgba(255, 255, 255, 0)']},
-        labels: ['151-180', '121-150', '91-120', '61-90', '31-60', '0-30', ''],
-        hoverinfo: 'label',
-        hole: .3,
-        type: 'pie',
-        showlegend: false
-        }];
+        textposition: "inside",
+        labels: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", ""],
+        hoverinfo: "label",
+        marker: {colors:['rgba(229, 12, 0, 0.6)', 'rgba(224, 64, 0, 0.6)',
+                         'rgba(219, 113, 0, 0.6)', 'rgba(214, 160, 0, 0.6)',
+                         'rgba(210, 205, 0, 0.6)', 'rgba(162, 205, 0, 0.6)',
+                         'rgba(112, 200, 0, 0.6)', 'rgba(64, 195, 0, 0.6)',
+                         'rgba(18, 191, 0, 0.6)', 'white']},
+
+    }];
 
     var layout = {
+        // shapes:[{
+        //     type: 'line',
+        //     x0: 0,
+        //     y0: 0,
+        //     x1: x,
+        //     y1: y,
+        //     fillcolor: 'rgb(0, 22, 229)',
+        //     line: {
+        //         color: 'rgb(0, 22, 229)'
+        //     }
+        //   }],
         shapes:[{
             type: 'path',
             path: path,
-            fillcolor: '850000',
+            fillcolor: 'rgb(0, 22, 229)',
             line: {
-                color: '850000'
+                color: 'rgb(0, 22, 229)'
             }
         }],
-        title: '<b>BB Washing frequency</b> <br> Per Week',
-        height: Plotly.d3.select('.gauge').node().offsetHeight,
-        width: Plotly.d3.select('.gauge').node().offsetWidth,
+        title: '<b>Belly Button Washing frequency</b> <br> Per Week',
+        // height: Plotly.d3.select('.gauge').node().offsetHeight,
+        // width: Plotly.d3.select('.gauge').node().offsetWidth,
         autosize: true,
         margin: {
-            t: 50,
+            t: 60,
             // l: 20,
             // r: 20,
             b: 20
         },
-        xaxis: {zeroline:false, showticklabels:false, showgrid: false, range: [-1, 1]},
-        yaxis: {zeroline:false, showticklabels:false, showgrid: false, range: [-1, 1]}
+        xaxis: {visible: false, range: [-1, 1]},
+        // yaxis: {visible: false, zeroline:false, showticklabels:false, showgrid: false, range: [-1, 1]}
+        yaxis: {visible: false, range: [-1, 1]}
     };
     Plotly.newPlot(gauge_plot, data, layout);    
 
