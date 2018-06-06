@@ -96,15 +96,15 @@ select {
 .wrapper {
     display: grid;
     
-    grid-template-columns: 1fr 2fr 4fr 1fr;
-    grid-template-rows: 200px 20vh 30vh auto;
+    grid-template-columns: 0.8fr 2fr 4fr 0.8fr;
+    grid-template-rows: 200px 150px 200px 250px 200px;
 
     grid-template-areas:
         'header header header header'
         'sidebar-left navigation pie sidebar-right'
         'sidebar-left metadata pie sidebar-right'
         'sidebar-left bubble bubble sidebar-right'
-        'sidebar-left . gauge sidebar-right';
+        'sidebar-left gauge gauge sidebar-right';
 
     grid-gap: 7px;
 
@@ -113,11 +113,12 @@ select {
 @media all and (max-width: 880px) {
     .wrapper {
         grid-template-columns: 1fr 2fr;
-        grid-template-rows: 150px 40vh auto;
+        grid-template-rows: 150px 20vh 30vh auto;
         grid-template-areas:
         "header header"
         "navigation pie"
-        "metadata gauge"
+        "metadata pie"
+        'gauge gauge'
         "bubble bubble";
         grid-gap: 5px;
     }

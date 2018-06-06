@@ -16,27 +16,26 @@ Plotly.d3.json("/otu", function(error, response) {
     otu = response;
 });
 
-// var metadata = new Array();
+var sample_otu = new Object();
 
 function optionChanged(sample) {
 
-    // var sample_otu = new Object();
-    var metadata = new Array();
+    
+    // var metadata = new Array();
     var wfrequency = '';
     
     Plotly.d3.json(("/samples/" + sample), function(error, response) {
         
-        var sample_otu = response;
-        // console.log(sample_otu);
-        // console.log(otu);
+        sample_otu = response;
         pieChart(sample_otu);
+        bubblePlot(sample_otu);
+    });
 
-    });
     Plotly.d3.json(("/metadata/" + sample), function(error, response) {
-        metadata = response;
+        var metadata = response;
         render_metadata(metadata);
-        // console.log(metadata);
     });
+
     Plotly.d3.json(("/wfreq/" + sample), function(error, response) {
         wfrequency = response;
     });    
@@ -51,12 +50,9 @@ function pieChart(dict ) {
     var values = Object.values(dict[0])[1].slice(0,10);
     
     //extract otu's description for hovertext
-    var hover = otu.filter((ot, index) => {
-        if (labels.includes(index+1)) {
-            return ot
-        };
+    var hover = labels.map((label) => {
+        return otu[label-1]
     }); 
-    // console.log(hover);
 
     var data = [{
         values: values,
@@ -72,26 +68,25 @@ function pieChart(dict ) {
         width: Plotly.d3.select('.pie').node().offsetWidth,
         autosize: true,
         margin: {
-            t: 10,
-            l: 10,
-            r: 10,
-            b: 10
+            t: 20,
+            l: 20,
+            r: 20,
+            b: 20
         }
     };
 
     Plotly.newPlot(pie_plot, data, layout);
 
-    window.addEventListener('resize', function() { Plotly.Plots.resize(pie_plot); });
+    window.addEventListener('resize', function() { Plotly.Plots.resize(pie_plot); }); //not working
 };
 
 function render_metadata(data) {
 
     Plotly.d3.selectAll('tr').remove();
-
-    var header = ['Sample Metadata'];
-
+    
+    //render header
     Plotly.d3.select('thead').selectAll('tr')
-    .data(header)
+    .data(['Sample Metadata'])
     .enter()
     .append('tr')
     .classed('head', true)
@@ -99,6 +94,7 @@ function render_metadata(data) {
     .style('font-weight', 'bold')
     .html(function (d) {return d})
 
+    //render body
     Plotly.d3.select('tbody').selectAll('tr')
     .data(Object.keys(data))
     .enter()
@@ -108,10 +104,54 @@ function render_metadata(data) {
     });
 }
 
+function bubblePlot(dict) {
 
+    var bubble_plot = Plotly.d3.select('#bubble-container').node();
 
+    var labels = Object.values(dict[0])[0]; //x axis
+    var values = Object.values(dict[0])[1]; //yaxis
 
+    var hover_bubble = labels.map((lab) => {
+        return otu[lab-1]
+    });
 
+    var data = [{
+        x: labels,
+        y: values,
+        text: hover_bubble,
+        mode: 'markers',
+        marker: {
+            size: values.map(el => el*5),
+            // size: values,
+            color: labels,
+            
+            // sizeref: 2,
+            sizemode: 'area'
+        }
+    }];
 
+    var layout = {
+        height: Plotly.d3.select('.bubble').node().offsetHeight,
+        width: Plotly.d3.select('.bubble').node().offsetWidth,
+        autosize: true,
+        margin: {
+            t: 20,
+            l: 40,
+            r: 40,
+            b: 20
+        }
+    }
 
+    Plotly.newPlot(bubble_plot, data, layout);
+    window.addEventListener('resize', function() { Plotly.Plots.resize(bubble_plot); });
+}
+
+function toColor(num) {
+    num >>>= 0;
+    var b = num & 0xFF,
+        g = (num & 0xFF00) >>> 8,
+        r = (num & 0xFF0000) >>> 16,
+        a = ( (num & 0xFF000000) >>> 24 ) / 255 ;
+    return "rgba(" + [r, g, b, a].join(",") + ")";
+}
 
