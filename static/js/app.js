@@ -27,8 +27,9 @@ function optionChanged(sample) {
     Plotly.d3.json(("/samples/" + sample), function(error, response) {
         
         sample_otu = response;
-        pieChart(sample_otu);
-        bubblePlot(sample_otu);
+        bubble_pie(sample_otu);
+        // pieChart(sample_otu);
+        // bubblePlot(sample_otu);
     });
 
     Plotly.d3.json(("/metadata/" + sample), function(error, response) {
@@ -121,11 +122,10 @@ function bubblePlot(dict) {
         text: hover_bubble,
         mode: 'markers',
         marker: {
-            size: values.map(el => el*5),
+            size: values.map(el => el*8),
             // size: values,
             color: labels,
-            
-            // sizeref: 2,
+            colorscale: 'Rainbow',
             sizemode: 'area'
         }
     }];
@@ -138,7 +138,10 @@ function bubblePlot(dict) {
             t: 20,
             l: 40,
             r: 40,
-            b: 20
+            b: 40
+        },
+        xaxis: {
+            title: 'Otu_ID',
         }
     }
 
@@ -146,12 +149,77 @@ function bubblePlot(dict) {
     window.addEventListener('resize', function() { Plotly.Plots.resize(bubble_plot); });
 }
 
-function toColor(num) {
-    num >>>= 0;
-    var b = num & 0xFF,
-        g = (num & 0xFF00) >>> 8,
-        r = (num & 0xFF0000) >>> 16,
-        a = ( (num & 0xFF000000) >>> 24 ) / 255 ;
-    return "rgba(" + [r, g, b, a].join(",") + ")";
+
+function bubble_pie(dict) {
+
+    var bubble_plot = Plotly.d3.select('#bubble-container').node();
+    var pie_plot = Plotly.d3.select('#pie-container').node();
+
+    var labels = Object.values(dict[0])[0]; //x axis
+    var values = Object.values(dict[0])[1]; //yaxis
+
+    // var hover_bubble = labels.map((lab) => {
+    //     return otu[lab-1]
+    // });
+
+    var data_bubble = [{
+        x: labels,
+        y: values,
+        text: labels.map((label) => {
+            return otu[label-1]
+        }),
+        mode: 'markers',
+        marker: {
+            size: values.map(el => el*8),
+            // size: values,
+            color: labels,
+            colorscale: 'Rainbow',
+            sizemode: 'area'
+        }
+    }];
+
+    var layout_bubble = {
+        height: Plotly.d3.select('.bubble').node().offsetHeight,
+        width: Plotly.d3.select('.bubble').node().offsetWidth,
+        autosize: true,
+        margin: {
+            t: 20,
+            l: 40,
+            r: 40,
+            b: 40
+        },
+        xaxis: {
+            title: 'Otu_ID',
+        }
+    };
+
+    var data_pie = [{
+        values: values.slice(0,10),
+        labels: labels.slice(0,10),
+        hovertext: labels.slice(0,10).map((label) => {
+            return otu[label-1]
+        }),
+        type: 'pie'
+    }];
+    // console.log(values);
+
+    var layout_pie = {
+        // 'title': 'Pirojok',
+        height: Plotly.d3.select('.pie').node().offsetHeight,
+        width: Plotly.d3.select('.pie').node().offsetWidth,
+        autosize: true,
+        margin: {
+            t: 20,
+            l: 20,
+            r: 20,
+            b: 20
+        }
+    };
+
+    Plotly.newPlot(pie_plot, data_pie, layout_pie);
+    Plotly.newPlot(bubble_plot, data_bubble, layout_bubble);
+
+    window.addEventListener('resize', function() { Plotly.Plots.resize(pie_plot); });
+    window.addEventListener('resize', function() { Plotly.Plots.resize(bubble_plot); });
 }
 

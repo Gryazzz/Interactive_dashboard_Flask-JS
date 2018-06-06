@@ -97,7 +97,7 @@ select {
     display: grid;
     
     grid-template-columns: 0.8fr 2fr 4fr 0.8fr;
-    grid-template-rows: 200px 150px 200px 250px 200px;
+    grid-template-rows: 200px 150px 200px 300px 200px;
 
     grid-template-areas:
         'header header header header'
