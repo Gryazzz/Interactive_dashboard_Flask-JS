@@ -35,7 +35,7 @@ function optionChanged(sample) {
     Plotly.d3.json(("/metadata/" + sample), function(error, response) {
         metadata = response;
         render_metadata(metadata);
-        console.log(metadata);
+        // console.log(metadata);
     });
     Plotly.d3.json(("/wfreq/" + sample), function(error, response) {
         wfrequency = response;
@@ -85,11 +85,19 @@ function pieChart(dict ) {
 };
 
 function render_metadata(data) {
-    Plotly.d3.select('thead')
+
+    Plotly.d3.selectAll('tr').remove();
+
+    var header = ['Sample Metadata'];
+
+    Plotly.d3.select('thead').selectAll('tr')
+    .data(header)
+    .enter()
     .append('tr')
+    .classed('head', true)
     .append('td')
     .style('font-weight', 'bold')
-    .html('Sample Metadata');
+    .html(function (d) {return d})
 
     Plotly.d3.select('tbody').selectAll('tr')
     .data(Object.keys(data))
