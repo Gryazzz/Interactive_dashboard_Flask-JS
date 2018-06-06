@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background: rgb(205, 228, 228);
 }
 
 /* HEADER--------------------------------------------- */
@@ -74,15 +75,7 @@ select {
 
 .pie {
     grid-area: pie;
-    background: rgb(247, 202, 185);
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-}
-
-#pie-container {
-    /* display: flex; */
-    /* flex: 1; */
+    background: rgb(255, 255, 255);
 }
 
 .metadata {
@@ -104,7 +97,7 @@ select {
     display: grid;
     
     grid-template-columns: 1fr 2fr 4fr 1fr;
-    grid-template-rows: 200px 30vh auto;
+    grid-template-rows: 200px 20vh 30vh auto;
 
     grid-template-areas:
         'header header header header'
@@ -120,7 +113,7 @@ select {
 @media all and (max-width: 880px) {
     .wrapper {
         grid-template-columns: 1fr 2fr;
-        grid-template-rows: 150px auto;
+        grid-template-rows: 150px 40vh auto;
         grid-template-areas:
         "header header"
         "navigation pie"
@@ -138,6 +131,6 @@ select {
     align-items: center;
     justify-content: center;
     margin: 15px;
-    background: rgb(219, 219, 214);
+    background: rgb(255, 255, 255);
     border-radius: 5px;
 }
