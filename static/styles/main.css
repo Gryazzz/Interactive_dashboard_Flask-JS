@@ -119,13 +119,30 @@ select {
 @media all and (max-width: 880px) {
     .wrapper {
         grid-template-columns: 1fr 2fr;
-        grid-template-rows: 150px 20vh 30vh auto;
+        grid-template-rows: 150px 20vh 30vh 300px auto;
         grid-template-areas:
         "header header"
         "navigation pie"
         "metadata pie"
-        'gauge gauge'
-        "bubble bubble";
+        "bubble bubble"
+        'gauge gauge';
+        grid-gap: 5px;
+    }
+    .sidebar-left, .sidebar-right {
+        display: none;
+    }
+}
+
+@media all and (max-width: 550px) {
+    .wrapper {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 150px 200px 250px 250px auto;
+        grid-template-areas:
+        "header header"
+        "navigation metadata"
+        "pie pie"
+        "bubble bubble"
+        "gauge gauge";
         grid-gap: 5px;
     }
     .sidebar-left, .sidebar-right {
