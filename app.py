@@ -36,7 +36,6 @@ def home():
 def get_names():
     from functions import find_col_names
     names = find_col_names(engine, 'samples')
-    del names[:1]
 
     return jsonify(names)
 
