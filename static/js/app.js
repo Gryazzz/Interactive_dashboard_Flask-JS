@@ -97,7 +97,9 @@ function bubble_pie(dict) {
         },
         xaxis: {
             title: 'Otu_ID',
-        }
+        },
+        plot_bgcolor: 'rgb(212, 245, 209)',
+        paper_bgcolor:'rgb(212, 245, 209)'
     };
 
     var data_pie = [{
@@ -137,7 +139,9 @@ function bubble_pie(dict) {
             l: 20,
             r: 20,
             b: 20
-        }
+        },
+        plot_bgcolor: 'rgb(205, 233, 247)',
+        paper_bgcolor:'rgb(205, 233, 247)'
     };
 
     Plotly.react(pie_plot, data_pie, layout_pie);
