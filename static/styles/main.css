@@ -30,13 +30,13 @@ body {
 
 .sidebar-left {
     grid-area: sidebar-left;
-    background: url('../images/side2.jpg') center no-repeat;
+    background: url('../images/side4.png') center no-repeat;
     background-size: cover;
 }
 
 .sidebar-right {
     grid-area: sidebar-right;
-    background: url('../images/side2.jpg') center no-repeat;
+    background: url('../images/side5.jpg') center no-repeat;
     background-size: cover;
 }
 
@@ -109,7 +109,7 @@ select {
 .wrapper {
     display: grid;
     
-    grid-template-columns: 0.6fr 2fr 4fr 0.6fr;
+    grid-template-columns: 0.7fr 2fr 4fr 0.7fr;
     grid-template-rows: 200px 150px 200px 300px auto;
 
     grid-template-areas:
