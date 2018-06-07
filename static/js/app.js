@@ -175,8 +175,9 @@ function gauge(data) {
 
     var gauge_plot = Plotly.d3.select('#gauge-container').node();
 
-    var degrees = 180 - data*18,
-        radius = .4;
+    var degrees = 180 - data*20,
+        radius = .5;
+        console.log(degrees);
     var radians = degrees * Math.PI / 180;
     var x = radius * Math.cos(radians);
     var y = radius * Math.sin(radians);
@@ -190,6 +191,7 @@ function gauge(data) {
 
     var data = [
 
+        //setting up a round arrow base
         {type: 'scatter',
         x:[0],
         y:[0],
@@ -238,8 +240,8 @@ function gauge(data) {
             b: 20
         },
         xaxis: {visible: false, range: [-1, 1]},
-        // yaxis: {visible: false, zeroline:false, showticklabels:false, showgrid: false, range: [-1, 1]}
-        yaxis: {visible: false, range: [-1, 1]}
+        yaxis: {visible: false, zeroline:false, showticklabels:false, showgrid: false, range: [-1, 1]}
+        // yaxis: {visible: false, range: [-1, 1]}
     };
     Plotly.react(gauge_plot, data, layout);    
 

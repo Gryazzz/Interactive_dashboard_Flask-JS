@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: rgb(205, 228, 228);
+    background: rgb(192, 188, 188);
 }
 
 /* HEADER--------------------------------------------- */
@@ -30,13 +30,13 @@ body {
 
 .sidebar-left {
     grid-area: sidebar-left;
-    background: url('../images/side.jpg') center no-repeat;
+    background: url('../images/side2.jpg') center no-repeat;
     background-size: cover;
 }
 
 .sidebar-right {
     grid-area: sidebar-right;
-    background: url('../images/side.jpg') center no-repeat;
+    background: url('../images/side2.jpg') center no-repeat;
     background-size: cover;
 }
 
@@ -48,6 +48,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid rgb(172, 160, 160);
 }
 
 .choose {
@@ -55,6 +56,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 select {
@@ -72,6 +74,7 @@ select {
 
 #names {
     margin-bottom: 15px;
+    
 }
 
 /* PIE--------------------------------------------- */
@@ -79,6 +82,7 @@ select {
 .pie {
     grid-area: pie;
     background: rgb(255, 255, 255);
+    border: 1px solid rgb(172, 160, 160);
 }
 
 .metadata {
@@ -87,22 +91,25 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid rgb(172, 160, 160);
 }
 
 .bubble {
     grid-area: bubble;
     background: rgb(247, 252, 203);
+    border: 1px solid rgb(172, 160, 160);
 }
 
 .gauge {
     grid-area: gauge;
     background: rgb(247, 129, 139);
+    border: 1px solid rgb(172, 160, 160);
 }
 
 .wrapper {
     display: grid;
     
-    grid-template-columns: 0.8fr 2fr 4fr 0.8fr;
+    grid-template-columns: 0.6fr 2fr 4fr 0.6fr;
     grid-template-rows: 200px 150px 200px 300px auto;
 
     grid-template-areas:
@@ -112,7 +119,7 @@ select {
         'sidebar-left bubble bubble sidebar-right'
         'sidebar-left gauge gauge sidebar-right';
 
-    grid-gap: 7px;
+    grid-gap: 3px;
 
 }
 
