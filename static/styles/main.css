@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: rgb(192, 188, 188);
+    background: rgb(253, 250, 250);
 }
 
 /* HEADER--------------------------------------------- */
@@ -44,11 +44,11 @@ body {
 
 .navigation {
     grid-area: navigation;
-    background: rgb(212, 245, 209);
+    background: rgb(205, 233, 247);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(172, 160, 160);
+    border: 1px solid rgb(227, 231, 233);
 }
 
 .choose {
@@ -65,7 +65,7 @@ select {
     padding-right: 4px;
     width: 85px;
     font-size: 13px;
-    border: 2px solid rgb(177, 175, 175);
+    border: 2px solid rgb(200, 203, 204);
     background: url('../images/favicon.ico') 90% / 20% no-repeat rgb(248, 246, 246);
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -82,7 +82,7 @@ select {
 .pie {
     grid-area: pie;
     background: rgb(255, 255, 255);
-    border: 1px solid rgb(172, 160, 160);
+    border: 1px solid rgb(227, 231, 233);
 }
 
 .metadata {
@@ -91,19 +91,19 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(172, 160, 160);
+    border: 1px solid rgb(227, 231, 233);
 }
 
 .bubble {
     grid-area: bubble;
     background: rgb(247, 252, 203);
-    border: 1px solid rgb(172, 160, 160);
+    border: 1px solid rgb(227, 231, 233);
 }
 
 .gauge {
     grid-area: gauge;
     background: rgb(247, 129, 139);
-    border: 1px solid rgb(172, 160, 160);
+    border: 1px solid rgb(227, 231, 233);
 }
 
 .wrapper {

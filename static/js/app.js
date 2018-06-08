@@ -220,7 +220,7 @@ function gauge(data) {
                          'rgba(219, 113, 0, 0.6)', 'rgba(214, 160, 0, 0.6)',
                          'rgba(210, 205, 0, 0.6)', 'rgba(162, 205, 0, 0.6)',
                          'rgba(112, 200, 0, 0.6)', 'rgba(64, 195, 0, 0.6)',
-                         'rgba(18, 191, 0, 0.6)', 'white']},
+                         'rgba(18, 191, 0, 0.6)', 'rgb(205, 233, 247)']},
 
     }];
 
@@ -244,7 +244,9 @@ function gauge(data) {
             b: 20
         },
         xaxis: {visible: false, range: [-1, 1]},
-        yaxis: {visible: false, zeroline:false, showticklabels:false, showgrid: false, range: [-1, 1]}
+        yaxis: {visible: false, zeroline:false, showticklabels:false, showgrid: false, range: [-1, 1]},
+        plot_bgcolor: 'rgb(205, 233, 247)',
+        paper_bgcolor:'rgb(205, 233, 247)'
         // yaxis: {visible: false, range: [-1, 1]}
     };
     Plotly.react(gauge_plot, data, layout);    
