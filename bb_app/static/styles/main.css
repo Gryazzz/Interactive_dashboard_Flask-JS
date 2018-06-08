@@ -92,6 +92,8 @@ select {
     align-items: center;
     justify-content: center;
     border: 1px solid rgb(227, 231, 233);
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .bubble {

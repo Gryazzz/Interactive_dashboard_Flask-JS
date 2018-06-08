@@ -7,7 +7,7 @@ import os
 file_path = os.path.abspath(os.getcwd()) + "/bb_app/db/belly_button_biodiversity.sqlite"
 
 # engine = create_engine("sqlite:///db/belly_button_biodiversity.sqlite") or create_engine(os.environ.get('DATABASE_URL', ''))
-engine = create_engine('sqlite:///'+ file_path)
+engine = create_engine('sqlite:///'+ file_path) or os.environ.get('DATABASE_URL', '')
 print(engine)
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/belly_button_biodiversity.sqlite"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + file_path or os.environ.get('DATABASE_URL', '')
-# print(app.config)
+print('app.config is set')
 
 db = SQLAlchemy(app)
 
