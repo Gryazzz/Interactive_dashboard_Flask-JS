@@ -81,7 +81,7 @@ select {
 
 .pie {
     grid-area: pie;
-    background: rgb(255, 255, 255);
+    background: rgb(205, 233, 247);
     border: 1px solid rgb(227, 231, 233);
 }
 
@@ -98,13 +98,13 @@ select {
 
 .bubble {
     grid-area: bubble;
-    background: rgb(247, 252, 203);
+    background: rgb(212, 245, 209);
     border: 1px solid rgb(227, 231, 233);
 }
 
 .gauge {
     grid-area: gauge;
-    background: rgb(247, 129, 139);
+    background: rgb(205, 233, 247);
     border: 1px solid rgb(227, 231, 233);
 }
 
