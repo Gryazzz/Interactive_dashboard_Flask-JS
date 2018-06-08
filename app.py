@@ -4,7 +4,7 @@ from sqlalchemy.ext.automap import automap_base
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-engine = create_engine("sqlite:///Data/belly_button_biodiversity.sqlite")
+engine = create_engine("sqlite:///db/belly_button_biodiversity.sqlite") or create_engine(os.environ.get('DATABASE_URL', ''))
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def before_request():
 
 app.before_request(before_request)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///Data/belly_button_biodiversity.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/belly_button_biodiversity.sqlite"
 db = SQLAlchemy(app)
 
 db.metadata.bind = db.engine
