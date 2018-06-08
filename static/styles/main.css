@@ -30,13 +30,13 @@ body {
 
 .sidebar-left {
     grid-area: sidebar-left;
-    background: url('../images/side4.png') center no-repeat;
+    background: url('../images/side44.jpg') center no-repeat;
     background-size: cover;
 }
 
 .sidebar-right {
     grid-area: sidebar-right;
-    background: url('../images/side5.jpg') center no-repeat;
+    background: url('../images/side55.jpg') center no-repeat;
     background-size: cover;
 }
 
