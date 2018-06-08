@@ -8,10 +8,10 @@ engine = create_engine("sqlite:///db/belly_button_biodiversity.sqlite") or creat
 
 app = Flask(__name__)
 
-def before_request():
-    app.jinja_env.cache = {}
+# def before_request():
+#     app.jinja_env.cache = {}
 
-app.before_request(before_request)
+# app.before_request(before_request)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/belly_button_biodiversity.sqlite"
 db = SQLAlchemy(app)
