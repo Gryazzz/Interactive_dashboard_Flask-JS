@@ -4,16 +4,19 @@ from sqlalchemy.ext.automap import automap_base
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-engine = create_engine("sqlite:///db/belly_button_biodiversity.sqlite") or create_engine(os.environ.get('DATABASE_URL', ''))
+file_path = os.path.abspath(os.getcwd()) + "/bb_app/db/belly_button_biodiversity.sqlite"
+
+# engine = create_engine("sqlite:///db/belly_button_biodiversity.sqlite") or create_engine(os.environ.get('DATABASE_URL', ''))
+engine = create_engine('sqlite:///'+ file_path)
+print(engine)
 
 app = Flask(__name__)
 
-# def before_request():
-#     app.jinja_env.cache = {}
 
-# app.before_request(before_request)
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/belly_button_biodiversity.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + file_path
+print(app.config)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/belly_button_biodiversity.sqlite"
 db = SQLAlchemy(app)
 
 db.metadata.bind = db.engine
