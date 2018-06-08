@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, jsonify, request
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 engine = create_engine("sqlite:///Data/belly_button_biodiversity.sqlite")
 
@@ -12,7 +13,7 @@ def before_request():
 
 app.before_request(before_request)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Data/belly_button_biodiversity.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///Data/belly_button_biodiversity.sqlite"
 db = SQLAlchemy(app)
 
 db.metadata.bind = db.engine
