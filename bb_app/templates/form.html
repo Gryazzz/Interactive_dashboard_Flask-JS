@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bacteriofags</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='styles/main.css') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/bromelia.ico') }}">
+</head>
+<body>
+    <form method="POST" action="/enter">
+
+        <label for="inputName">SAMPLEID</label>
+        <input type="text" name="SAMPLEID">
+    
+        <label for="inputAge">EVENT</label>
+        <input type="text" name="EVENT">
+
+        <label for="inputAge">ETHNICITY</label>
+        <input type="text" name="ETHNICITY">
+
+        <label for="inputAge">GENDER</label>
+        <input type="text" name="GENDER">
+
+        <label for="inputName">AGE</label>
+        <input type="text" name="AGE">
+    
+        <label for="inputAge">WFREQ</label>
+        <input type="text" name="WFREQ">
+
+        <label for="inputAge">BBTYPE</label>
+        <input type="text" name="BBTYPE">
+
+        <label for="inputAge">LOCATION</label>
+        <input type="text" name="LOCATION">
+
+        <label for="inputName">COUNTRY012</label>
+        <input type="text" name="COUNTRY012">
+    
+        <label for="inputAge">ZIP012</label>
+        <input type="text" name="ZIP012">
+
+        <label for="inputAge">COUNTRY1319</label>
+        <input type="text" name="COUNTRY1319">
+
+        <label for="inputAge">ZIP1319</label>
+        <input type="text" name="ZIP1319">
+
+        <label for="inputName">DOG</label>
+        <input type="text" name="DOG">
+    
+        <label for="inputAge">CAT</label>
+        <input type="text" name="CAT">
+
+        <label for="inputAge">IMPSURFACE013</label>
+        <input type="text" name="IMPSURFACE013">
+
+        <label for="inputAge">NPP013</label>
+        <input type="text" name="NPP013">
+
+        <label for="inputAge">MMAXTEMP013</label>
+        <input type="text" name="MMAXTEMP013">
+
+        <label for="inputAge">PFC013</label>
+        <input type="text" name="PFC013">
+
+        <label for="inputAge">IMPSURFACE1319</label>
+        <input type="text" name="IMPSURFACE1319">
+
+        <label for="inputAge">NPP1319</label>
+        <input type="text" name="NPP1319">
+
+        <label for="inputAge">MMAXTEMP1319</label>
+        <input type="text" name="MMAXTEMP1319">
+
+        <label for="inputAge">PFC1319</label>
+        <input type="text" name="PFC1319">
+    
+        <input type="submit" value="submit">
+    </form>
+
+
+
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -169,3 +169,10 @@ select {
     border: 1px, solid, rgb(75, 66, 66);
     
 }
+
+/* FORM---------------------------------- */
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
